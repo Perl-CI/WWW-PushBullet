@@ -9,35 +9,6 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-      
-    - name: Install cpanminus
-      run: sudo apt install -y cpanminus
-      
-    - name: Install Dist::Zilla stuff
-      run: > 
-        cpanm --sudo -n Dist::Zilla
-        Devel::Cover::Report::Codecov
-        Devel::Cover::Report::Coveralls 
-        Dist::Zilla::App::Command::cover
-        Dist::Zilla::Plugin::CheckChangeLog
-        Dist::Zilla::Plugin::ExtraTests
-        Dist::Zilla::Plugin::GitHub::Meta
-        Dist::Zilla::Plugin::MetaProvides::Package
-        Dist::Zilla::Plugin::MinimumPerl
-        Dist::Zilla::Plugin::PerlTidy
-        Dist::Zilla::Plugin::PodCoverageTests
-        Dist::Zilla::Plugin::PodSyntaxTests
-        Dist::Zilla::Plugin::RewriteVersion
-        Dist::Zilla::Plugin::Test::Kwalitee::Extra 
-        Dist::Zilla::Plugin::Test::Perl::Critic
-      
-    - name: Install required modules
-      run: dzil listdeps | xargs cpanm --sudo
-
-    - name: Tests
-      run: |
-        PERL5OPT=-MDevel::Cover=-coverage,statement,branch,condition,path,subroutine prove -lrsv t
-        cover -report codecov
-        dzil test
-      env: 
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    
+    - name: Publish Docker Image to Github Package Registry
+      uses: Perl-CI/github-action-perl-dzil-build@master
