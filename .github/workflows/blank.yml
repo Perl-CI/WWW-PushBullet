@@ -16,5 +16,5 @@ jobs:
         GITHUB_PACKAGE_REGISTRY_LOGIN: ${{ secrets.GITHUB_PACKAGE_REGISTRY_LOGIN }}
         GITHUB_PACKAGE_REGISTRY_PASSWORD: ${{ secrets.GITHUB_PACKAGE_REGISTRY_PASSWORD }}
       
-#    - name: Build project using 'Perl-CI/github-action-perl-dzil-build@master'
-#      uses: Perl-CI/github-action-perl-dzil-build@master
+    - name: Build project using 'Perl-CI/github-action-perl-dzil-build@master'
+      uses: Perl-CI/github-action-perl-dzil-build@master
