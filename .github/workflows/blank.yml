@@ -12,7 +12,7 @@ jobs:
     
     - name: Login to Github Docker Package Registry
       run: echo ${GITHUB_PACKAGE_REGISTRY_PASSWORD} | docker login -u ${GITHUB_PACKAGE_REGISTRY_LOGIN} --password-stdin docker.pkg.github.com
-      with:
+      env:
         GITHUB_PACKAGE_REGISTRY_LOGIN: ${{ secrets.GITHUB_PACKAGE_REGISTRY_LOGIN }}
         GITHUB_PACKAGE_REGISTRY_PASSWORD: ${{ secrets.GITHUB_PACKAGE_REGISTRY_PASSWORD }}
       
